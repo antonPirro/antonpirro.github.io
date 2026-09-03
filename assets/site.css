@@ -48,14 +48,18 @@
 *,*::before,*::after{ box-sizing:border-box; }
 
 /* ===== treeline =========================================================
-   A silhouette pinned to the bottom of the window, tinted with the text
-   colour and masked so it dissolves upward. Drop a traced photograph in at
-   assets/img/treeline.png and site.js swaps it in for the drawn fallback. */
+   A canopy hung from the top of the window, tinted with the text colour and
+   masked so it dissolves downward. site.js drifts it upward on scroll at a
+   fraction of the page's speed, so it reads as a layer you move underneath.
+   Drop a traced photograph in at assets/img/treeline.png and site.js swaps
+   it in for the drawn fallback. */
 .scene{
   position:fixed; z-index:-1; left:0; right:0; top:0;
   height:min(52vh, 34rem);
   background:var(--ink);
-  opacity:.11;
+  --scene-op:.11;
+  opacity:calc(var(--scene-op) * var(--drift, 1));
+  will-change:transform;
   pointer-events:none;
   --tree:url('img/treeline.svg');
   -webkit-mask-image:var(--tree), linear-gradient(to bottom, #000 12%, transparent 92%);
@@ -70,10 +74,11 @@
           mask-composite:intersect;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .scene{ opacity:.11; }
+  :root:not([data-theme="light"]) .scene{ --scene-op:.12; }
 }
-:root[data-theme="dark"] .scene{ opacity:.11; }
-@media (max-width:52rem){ .scene{ height:min(38vh,20rem); opacity:.05; } }
+:root[data-theme="dark"] .scene{ --scene-op:.12; }
+@media (max-width:52rem){ .scene{ height:min(38vh,20rem); --scene-op:.06; } }
+@media (prefers-reduced-motion:reduce){ .scene{ transform:none !important; } }
 
 html{ background:var(--paper); }
 

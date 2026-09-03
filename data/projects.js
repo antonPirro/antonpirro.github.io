@@ -186,7 +186,7 @@ window.SITE = {
       featured: false,
       blurb: '',
       roles: ['Original score'],
-      video: null,
+      video: { type: 'youtube', id: 'TWCZitYZ8KQ' },
       poster: '',
       notes: [],
       spec: [

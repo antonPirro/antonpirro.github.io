@@ -425,9 +425,30 @@
     probe.src = 'assets/img/treeline.png';
   })();
 
+  /* The canopy drifts up at a quarter of the page's speed and thins as it
+     goes, so the top of the site reads as a layer you're moving underneath.
+     Clamped so it settles rather than sliding away on a long page. */
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var scene = document.getElementById('scene');
+  var queued = false;
+
+  function onScroll() {
+    queued = false;
+    var y = window.scrollY;
+    document.body.classList.toggle('is-scrolled', y > 140);
+    if (reduceMotion) return;
+    var h = scene.offsetHeight || 1;
+    var shift = Math.min(y * 0.25, h * 0.45);
+    scene.style.transform = 'translate3d(0,' + (-shift).toFixed(1) + 'px,0)';
+    scene.style.setProperty('--drift',
+      (1 - Math.min(y / (h * 2.4), 0.5)).toFixed(3));
+  }
+
   window.addEventListener('scroll', function () {
-    document.body.classList.toggle('is-scrolled', window.scrollY > 140);
+    if (!queued) { queued = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
+  onScroll();
 
   window.addEventListener('hashchange', render);
   paintChrome();
