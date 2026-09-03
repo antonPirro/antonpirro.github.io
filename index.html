@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anton Pirro</title>
+<meta name="description" content="Anton Pirro — music, sound design, and picture for film. Portfolio.">
+<meta property="og:title" content="Anton Pirro">
+<meta property="og:description" content="Music, sound design, and picture for film.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="scene" id="scene" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="bar__name" href="#/" data-nav>Anton Pirro</a>
+  <nav class="bar__nav">
+    <a href="#/" data-nav data-route="work">Work</a>
+    <a href="#/about" data-nav data-route="about">About</a>
+    <a href="#/contact" data-nav data-route="contact">Contact</a>
+    <button class="bar__theme" type="button" id="themeToggle" aria-label="Switch colour scheme" title="Switch colour scheme">◐</button>
+  </nav>
+</header>
+
+<main id="main"></main>
+
+<footer class="foot">
+  <div class="foot__row">
+    <p class="foot__contact" id="footContact"></p>
+    <p class="foot__meta lbl" id="footYear"></p>
+  </div>
+  <p class="foot__note"><span id="footNote"></span></p>
+</footer>
+
+<div class="peek" id="peek" aria-hidden="true"><div class="peek__inner"></div></div>
+
+<script src="data/projects.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
