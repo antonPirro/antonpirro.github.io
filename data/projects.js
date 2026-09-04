@@ -6,8 +6,13 @@
    To reorder: move the block up or down.
    To feature a project on the homepage: featured: true  (keep it to 3)
 
-   STILLS — optional process images shown under the notes:
-     stills: [ { src: 'assets/img/process/name.jpg', caption: 'what it shows' } ]
+   STILLS — optional process images shown under the notes. An entry can be a
+   short silent clip instead of a photo:
+     stills: [
+       { src: 'assets/img/process/name.jpg', caption: 'what it shows' },
+       { type: 'video', src: 'assets/video/process/name.mp4',
+         poster: 'assets/img/process/name.jpg', caption: '...' }
+     ]
 
    VIDEO — two options per project:
      video: { type: 'youtube', id: 'dQw4w9WgXcQ' }        <- unlisted YouTube
@@ -113,9 +118,9 @@ window.SITE = {
         { label: 'Referenced script', href: 'https://drive.google.com/file/d/1ch0jFR48OXwrTDbY5QxRacUpKGiJ0RCU/view?usp=sharing' }
       ],
       stills: [
-        { src: 'assets/img/process/departing-silence-1.jpg', caption: 'Blocking out the clearing' },
-        { src: 'assets/img/process/departing-silence-2.jpg', caption: 'Lighting the coffin' },
-        { src: 'assets/img/process/departing-silence-3.jpg', caption: 'Scattering the grass and trees' },
+        { src: 'assets/img/process/departing-silence-1.jpg', caption: 'Animating the camera path' },
+        { src: 'assets/img/process/departing-silence-2.jpg', caption: 'Fixing plant scatter clipping issue' },
+        { src: 'assets/img/process/departing-silence-3.jpg', caption: 'Setting up light gobo for god rays' },
         { src: 'assets/img/process/departing-silence-4.jpg', caption: 'Setting up the smoke simulation' }
       ],
       rights: ''
@@ -147,7 +152,13 @@ window.SITE = {
         { label: 'CinéInnovate Studios VIP', href: 'https://lmcfilms.lmc.gatech.edu/cineinnovate-studios-vip/' }
       ],
       stills: [
-        { src: 'assets/img/process/code-name-brenda-session.jpg', caption: 'The Ableton session' }
+        { src: 'assets/img/process/code-name-brenda-booth.jpg', caption: 'Dialogue session in the booth' },
+        { src: 'assets/img/process/code-name-brenda-console.jpg', caption: 'Mixing at the console' },
+        { type: 'video',
+          src: 'assets/video/process/code-name-brenda-session.mp4',
+          poster: 'assets/img/process/code-name-brenda-session-poster.jpg',
+          caption: 'In the studio' },
+        { src: 'assets/img/process/code-name-brenda-ableton.jpg', caption: 'The Ableton session' }
       ],
       rights: ''
     },

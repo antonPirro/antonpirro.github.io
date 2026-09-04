@@ -47,7 +47,7 @@ want it in the list, and change the text. Fields:
 | `notes` | array of paragraphs — the old "process box" text |
 | `spec` | the old basic info: `['Goal', '...'], ['Created', '...']` |
 | `credits`, `sources`, `links` | lists; `sources` and `links` take `{label, href}` |
-| `stills` | process images under the notes: `{src, caption}` |
+| `stills` | process images under the notes: `{src, caption}`, or a silent looping clip: `{type:'video', src, poster, caption}` |
 | `rights` | the "all visuals belong to…" line |
 
 Anything left empty just doesn't render.

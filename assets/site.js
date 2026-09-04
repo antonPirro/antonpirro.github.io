@@ -136,7 +136,6 @@
 
   function viewWork() {
     var feat = S.projects.filter(function (p) { return p.featured; });
-    var rest = S.projects.filter(function (p) { return !p.featured; });
 
     var html =
       '<div class="page"><div class="wrap">' +
@@ -149,7 +148,6 @@
     if (feat.length) {
       html += '<section class="sec"><div class="sec__head">' +
                 '<h2 class="lbl">Selected work</h2>' +
-                '<span class="lbl sec__count">' + pad(S.projects.length) + ' projects</span>' +
               '</div><div class="feat">';
       feat.forEach(function (p) {
         html +=
@@ -167,10 +165,11 @@
     }
 
     Object.keys(S.groups).forEach(function (g) {
-      var items = rest.filter(function (p) { return p.group === g; });
+      var items = S.projects.filter(function (p) { return p.group === g; });
       if (!items.length) return;
       html += '<section class="sec"><div class="sec__head">' +
                 '<h2 class="lbl">' + esc(S.groups[g]) + '</h2>' +
+                '<span class="lbl sec__count">' + pad(items.length) + '</span>' +
               '</div><div class="list">';
       items.forEach(function (p) {
         var n = S.projects.indexOf(p) + 1;
@@ -233,11 +232,21 @@
       ? '<section class="stills"><h2 class="lbl stills__head">Process</h2>' +
         '<div class="stills__grid' + (p.stills.length === 1 ? ' is-one' : '') + '">' +
         p.stills.map(function (s) {
+          var cap = s.caption
+            ? '<figcaption class="lbl">' + esc(s.caption) + '</figcaption>' : '';
+          if (s.type === 'video') {
+            /* a silent loop reads as a moving photograph; anyone who has asked
+               for less motion gets a still with controls instead */
+            return '<figure class="still"><div class="still__v"><video ' +
+              'src="' + esc(s.src) + '" ' +
+              (s.poster ? 'poster="' + esc(s.poster) + '" ' : '') +
+              'muted playsinline preload="metadata" ' +
+              (reduceMotion ? 'controls' : 'autoplay loop') +
+              '></video></div>' + cap + '</figure>';
+          }
           return '<figure class="still"><a href="' + esc(s.src) + '" target="_blank" ' +
                  'rel="noopener"><img src="' + esc(s.src) + '" alt="' +
-                 esc(s.caption || p.title) + '" loading="lazy"></a>' +
-                 (s.caption ? '<figcaption class="lbl">' + esc(s.caption) + '</figcaption>' : '') +
-                 '</figure>';
+                 esc(s.caption || p.title) + '" loading="lazy"></a>' + cap + '</figure>';
         }).join('') + '</div></section>'
       : '';
 
@@ -268,9 +277,13 @@
       '</div>' +
       '<nav class="pager">' +
         (prev ? '<a href="#/work/' + esc(prev.slug) + '"><span class="lbl">← Previous</span>' +
-                '<span class="pager__t">' + esc(prev.title) + '</span></a>' : '<span></span>') +
+                '<span class="pager__t">' + esc(prev.title) +
+                (prev.kicker ? ' <em>' + esc(prev.kicker) + '</em>' : '') + '</span></a>'
+              : '<span></span>') +
         (next ? '<a href="#/work/' + esc(next.slug) + '"><span class="lbl">Next →</span>' +
-                '<span class="pager__t">' + esc(next.title) + '</span></a>' : '<span></span>') +
+                '<span class="pager__t">' + esc(next.title) +
+                (next.kicker ? ' <em>' + esc(next.kicker) + '</em>' : '') + '</span></a>'
+              : '<span></span>') +
       '</nav>' +
     '</div></div>';
   }
