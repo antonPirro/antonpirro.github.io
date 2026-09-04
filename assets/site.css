@@ -49,29 +49,38 @@
 
 /* ===== treeline =========================================================
    A canopy hung from the top of the window, tinted with the text colour and
-   masked so it dissolves downward. site.js drifts it upward on scroll at a
-   fraction of the page's speed, so it reads as a layer you move underneath.
+   dissolving downward. site.js drifts it upward on scroll at a fraction of
+   the page's speed, so it reads as a layer you move underneath.
+
+   The two masks live on two elements on purpose. Combining them on one
+   element needs mask-composite, and a browser that doesn't honour it unions
+   the layers instead of intersecting them — which turns the trees into a
+   solid slab that slides around as you scroll. Nesting composes them the
+   same way everywhere, with no property to fall back on.
+
    Drop a traced photograph in at assets/img/treeline.png and site.js swaps
    it in for the drawn fallback. */
 .scene{
-  position:fixed; z-index:-1; left:0; right:0; top:0;
+  position:fixed; z-index:0; left:0; right:0; top:0;
   height:min(68vh, 42rem);
-  background:var(--ink);
-  --scene-op:.11;
-  opacity:calc(var(--scene-op) * var(--drift, 1));
-  will-change:transform;
   pointer-events:none;
+  will-change:transform, opacity;
   --tree:url('img/treeline.svg');
-  -webkit-mask-image:var(--tree), linear-gradient(to bottom, #000 38%, transparent 100%);
-          mask-image:var(--tree), linear-gradient(to bottom, #000 38%, transparent 100%);
-  -webkit-mask-size:cover, 100% 100%;
-          mask-size:cover, 100% 100%;
-  -webkit-mask-position:top center, top center;
-          mask-position:top center, top center;
-  -webkit-mask-repeat:no-repeat, no-repeat;
-          mask-repeat:no-repeat, no-repeat;
-  -webkit-mask-composite:source-in;
-          mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to bottom, #000 38%, transparent 100%);
+          mask-image:linear-gradient(to bottom, #000 38%, transparent 100%);
+}
+.scene__tree{
+  position:absolute; inset:0;
+  background:var(--ink);
+  opacity:var(--scene-op, .11);
+  -webkit-mask-image:var(--tree);
+          mask-image:var(--tree);
+  -webkit-mask-size:cover;
+          mask-size:cover;
+  -webkit-mask-position:top center;
+          mask-position:top center;
+  -webkit-mask-repeat:no-repeat;
+          mask-repeat:no-repeat;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) .scene{ --scene-op:.12; }
@@ -79,6 +88,10 @@
 :root[data-theme="dark"] .scene{ --scene-op:.12; }
 @media (max-width:52rem){ .scene{ height:min(50vh,24rem); --scene-op:.06; } }
 @media (prefers-reduced-motion:reduce){ .scene{ transform:none !important; } }
+/* No mask support at all means no silhouette — better nothing than a slab. */
+@supports not ((-webkit-mask-image: linear-gradient(#000,#000)) or (mask-image: linear-gradient(#000,#000))){
+  .scene{ display:none; }
+}
 
 html{ background:var(--paper); }
 

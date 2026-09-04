@@ -453,9 +453,10 @@
     if (reduceMotion) return;
     var h = scene.offsetHeight || 1;
     var shift = Math.min(y * 0.25, h * 0.45);
+    /* transform and opacity only — both composite without repainting the
+       mask, which a custom property feeding a calc() would force every frame */
     scene.style.transform = 'translate3d(0,' + (-shift).toFixed(1) + 'px,0)';
-    scene.style.setProperty('--drift',
-      (1 - Math.min(y / (h * 2.4), 0.5)).toFixed(3));
+    scene.style.opacity = (1 - Math.min(y / (h * 2.4), 0.5)).toFixed(3);
   }
 
   window.addEventListener('scroll', function () {
