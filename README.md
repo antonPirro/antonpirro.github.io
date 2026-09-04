@@ -139,11 +139,11 @@ redo it, or to swap in a different photo — a dark treeline against a bright sk
 works best — replace that file and run:
 
 ```bash
-python3 tools/treeline.py assets/img/source-treeline.jpg -c 0,0.42 -t 0.86
+python3 tools/treeline.py assets/img/source-treeline.jpg -c 0,0.55 -t 0.86
 ```
 
 `-c` is the vertical slice of the photo to keep (top,bottom as fractions) —
-here the top 42%, which is the branches and crowns.
+here the top 55%, which is the crowns, the trunks, and the far treeline.
 
 That writes `assets/img/treeline.png` and the site picks it up automatically.
 `-t` is the cutoff: higher keeps more of the misty mid-tones, lower keeps only

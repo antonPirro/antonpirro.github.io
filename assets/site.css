@@ -55,15 +55,15 @@
    it in for the drawn fallback. */
 .scene{
   position:fixed; z-index:-1; left:0; right:0; top:0;
-  height:min(52vh, 34rem);
+  height:min(68vh, 42rem);
   background:var(--ink);
   --scene-op:.11;
   opacity:calc(var(--scene-op) * var(--drift, 1));
   will-change:transform;
   pointer-events:none;
   --tree:url('img/treeline.svg');
-  -webkit-mask-image:var(--tree), linear-gradient(to bottom, #000 12%, transparent 92%);
-          mask-image:var(--tree), linear-gradient(to bottom, #000 12%, transparent 92%);
+  -webkit-mask-image:var(--tree), linear-gradient(to bottom, #000 38%, transparent 100%);
+          mask-image:var(--tree), linear-gradient(to bottom, #000 38%, transparent 100%);
   -webkit-mask-size:cover, 100% 100%;
           mask-size:cover, 100% 100%;
   -webkit-mask-position:top center, top center;
@@ -77,7 +77,7 @@
   :root:not([data-theme="light"]) .scene{ --scene-op:.12; }
 }
 :root[data-theme="dark"] .scene{ --scene-op:.12; }
-@media (max-width:52rem){ .scene{ height:min(38vh,20rem); --scene-op:.06; } }
+@media (max-width:52rem){ .scene{ height:min(50vh,24rem); --scene-op:.06; } }
 @media (prefers-reduced-motion:reduce){ .scene{ transform:none !important; } }
 
 html{ background:var(--paper); }
