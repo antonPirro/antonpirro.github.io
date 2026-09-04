@@ -68,7 +68,7 @@ window.SITE = {
       blurb: 'Trailer for my upcoming short film, Weight.',
       roles: ['Direction', 'Score', 'Edit'],
       video: { type: 'youtube', id: 'mBvynOpWcww' },
-      poster: '',
+      poster: 'assets/img/poster/weight.jpg',
       notes: [],
       spec: [
         ['Goal', 'Make a trailer for my upcoming short film'],
