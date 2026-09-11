@@ -56,6 +56,21 @@ window.SITE = {
   /* Site-wide line in the footer. */
   disclaimer: 'Any and all copyrighted visuals are included for demonstration purposes only, and are not commercialized or distributed in any way.',
 
+  /* Work that isn't finished or released yet. Shown as a quiet list at the
+     bottom of the homepage — no images, no links, nothing to click. Delete
+     an entry when it ships and becomes a real project above. */
+  upcoming: [
+    { title: 'Weight',
+      kicker: 'Short film',
+      role: 'Writer, director, editor, composer' },
+    { title: 'Untitled short film',
+      kicker: 'dir. Pramodh Sundarshrii & Ethan Hughes',
+      role: 'Composer' },
+    { title: 'Untitled short film',
+      kicker: 'dir. Olivia Landivar',
+      role: 'Production sound' }
+  ],
+
   groups: {
     films: 'Films & collaborations',
     studies: 'Studies & re-scores'
@@ -74,6 +89,12 @@ window.SITE = {
       roles: ['Direction', 'Score', 'Edit'],
       video: { type: 'youtube', id: 'mBvynOpWcww' },
       poster: 'assets/img/poster/weight.jpg',
+      stills: [
+        { src: 'assets/img/process/weight-corridor.jpg', caption: 'Shooting the basement corridor' },
+        { src: 'assets/img/process/weight-monitor.jpg', caption: 'Checking the frame on set' },
+        { src: 'assets/img/process/weight-night-exterior.jpg', caption: 'Night exterior on the field' },
+        { src: 'assets/img/process/weight-blender.jpg', caption: 'Animating a figure in Blender' }
+      ],
       notes: [],
       spec: [
         ['Goal', 'Make a trailer for my upcoming short film'],
@@ -132,7 +153,7 @@ window.SITE = {
       kicker: 'Scene demo',
       year: '2025',
       group: 'films',
-      featured: true,
+      featured: false,
       blurb: '',
       roles: ['Sound design', 'Score', 'Foley', 'Max/MSP', 'Mo-cap', 'Unreal', 'Edit'],
       video: { type: 'youtube', id: '-bQLKJo1rY0' },
@@ -242,7 +263,7 @@ window.SITE = {
       kicker: 'Trailer concept',
       year: 'November 2025',
       group: 'studies',
-      featured: false,
+      featured: true,
       blurb: '',
       roles: ['Edit', 'Score'],
       video: { type: 'youtube', id: 'WS--4Y3L_sI' },

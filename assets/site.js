@@ -188,6 +188,21 @@
       html += '</div></section>';
     });
 
+    if (S.upcoming && S.upcoming.length) {
+      html += '<section class="sec"><div class="sec__head">' +
+                '<h2 class="lbl">Upcoming</h2>' +
+              '</div><div class="soon">';
+      S.upcoming.forEach(function (u) {
+        html += '<div class="soon__row">' +
+                  '<span class="soon__title">' + esc(u.title) +
+                    (u.kicker ? ' <span class="soon__kicker">' + esc(u.kicker) + '</span>' : '') +
+                  '</span>' +
+                  '<span class="lbl soon__role">' + esc(u.role) + '</span>' +
+                '</div>';
+      });
+      html += '</div></section>';
+    }
+
     return html + '</div></div>';
   }
 
