@@ -13,6 +13,10 @@
        { type: 'video', src: 'assets/video/process/name.mp4',
          poster: 'assets/img/process/name.jpg', caption: '...' }
      ]
+   Every frame is cropped to 16:9 so the grid lines up. If a crop cuts off
+   something that matters, add position: 'center 30%' (or '20% center', etc.)
+   to that entry to choose what stays. Clicking a still always opens it
+   uncropped.
 
    VIDEO — two options per project:
      video: { type: 'youtube', id: 'dQw4w9WgXcQ' }        <- unlisted YouTube
@@ -62,13 +66,16 @@ window.SITE = {
   upcoming: [
     { title: 'Weight',
       kicker: 'Short film',
-      role: 'Writer, director, editor, composer' },
+      role: 'Writer, director, editor, composer',
+      when: 'Expected Fall 2026' },
     { title: 'Untitled short film',
       kicker: 'dir. Pramodh Sundarshrii & Ethan Hughes',
-      role: 'Composer' },
+      role: 'Composer',
+      when: 'Expected Fall 2026' },
     { title: 'Untitled short film',
       kicker: 'dir. Olivia Landivar',
-      role: 'Production sound' }
+      role: 'Production sound',
+      when: 'Expected Fall 2026' }
   ],
 
   groups: {
@@ -90,10 +97,11 @@ window.SITE = {
       video: { type: 'youtube', id: 'mBvynOpWcww' },
       poster: 'assets/img/poster/weight.jpg',
       stills: [
-        { src: 'assets/img/process/weight-corridor.jpg', caption: 'Shooting the basement corridor' },
-        { src: 'assets/img/process/weight-monitor.jpg', caption: 'Checking the frame on set' },
-        { src: 'assets/img/process/weight-night-exterior.jpg', caption: 'Night exterior on the field' },
-        { src: 'assets/img/process/weight-blender.jpg', caption: 'Animating a figure in Blender' }
+        { src: 'assets/img/process/weight-corridor.jpg', position: 'center 38%',
+          caption: 'We found some great locations, especially this one.' },
+        { src: 'assets/img/process/weight-monitor.jpg', caption: '' },
+        { src: 'assets/img/process/weight-night-exterior.jpg', caption: '' },
+        { src: 'assets/img/process/weight-blender.jpg', caption: 'There are several VFX shots in this short film.' }
       ],
       notes: [],
       spec: [

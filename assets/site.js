@@ -198,6 +198,7 @@
                     (u.kicker ? ' <span class="soon__kicker">' + esc(u.kicker) + '</span>' : '') +
                   '</span>' +
                   '<span class="lbl soon__role">' + esc(u.role) + '</span>' +
+                  (u.when ? '<span class="lbl soon__when">' + esc(u.when) + '</span>' : '') +
                 '</div>';
       });
       html += '</div></section>';
@@ -261,7 +262,9 @@
           }
           return '<figure class="still"><a href="' + esc(s.src) + '" target="_blank" ' +
                  'rel="noopener"><img src="' + esc(s.src) + '" alt="' +
-                 esc(s.caption || p.title) + '" loading="lazy"></a>' + cap + '</figure>';
+                 esc(s.caption || p.title) + '" loading="lazy"' +
+                 (s.position ? ' style="object-position:' + esc(s.position) + '"' : '') +
+                 '></a>' + cap + '</figure>';
         }).join('') + '</div></section>'
       : '';
 

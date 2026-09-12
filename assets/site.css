@@ -309,13 +309,16 @@ body[data-route="work-index"]:not(.is-scrolled) .bar__name{ opacity:0; pointer-e
 /* ---- upcoming ---------------------------------------------------------- */
 .soon{ border-top:1px solid var(--rule); }
 .soon__row{
-  display:flex; flex-wrap:wrap; align-items:baseline; gap:.25rem 1.5rem;
+  display:grid; grid-template-columns:1fr; gap:.3rem .5rem;
   padding:1rem 0; border-bottom:1px solid var(--rule);
+}
+@media (min-width:44rem){
+  .soon__row{ grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 10rem; align-items:baseline; }
 }
 .soon__title{ font-size:1.12rem; line-height:1.3; }
 .soon__kicker{ color:var(--muted); font-style:italic; font-size:.92em; }
-.soon__role{ margin-left:auto; }
-@media (max-width:40rem){ .soon__role{ margin-left:0; flex-basis:100%; } }
+.soon__when{ }
+@media (min-width:44rem){ .soon__when{ text-align:right; } }
 
 /* ===== project page ===================================================== */
 .back{ display:inline-block; padding:1.75rem 0 0; text-decoration:none; }
@@ -339,22 +342,22 @@ body[data-route="work-index"]:not(.is-scrolled) .bar__name{ opacity:0; pointer-e
 /* ---- process stills ---------------------------------------------------- */
 .stills{ margin-top:clamp(2rem,5vh,3rem); }
 .stills__head{ padding-bottom:.5rem; border-bottom:1px solid var(--rule); margin-bottom:1.1rem; }
-.stills__grid{
-  display:grid; gap:1.25rem; grid-template-columns:1fr 1fr;
-  align-items:start;   /* mixed portrait and landscape keep their own height */
-}
+.stills__grid{ display:grid; gap:1.25rem; grid-template-columns:1fr 1fr; }
 .stills__grid.is-one{ grid-template-columns:1fr; }
 @media (max-width:34rem){ .stills__grid{ grid-template-columns:1fr; } }
 .still{ margin:0; }
-/* a tall frame among wide ones shouldn't run away with the page */
-.still img{ max-height:26rem; object-fit:cover; object-position:center; }
+/* every frame is the same shape whatever the photo's own proportions are,
+   so the grid reads as a grid. Clicking one still opens it uncropped. */
 .still a, .still__v{
-  display:block; border:1px solid var(--rule); border-radius:2px; overflow:hidden;
+  display:block; aspect-ratio:16/9;
+  border:1px solid var(--rule); border-radius:2px; overflow:hidden;
   background:var(--paper-2); transition:border-color .2s ease;
 }
-.still__v video{ width:100%; height:auto; display:block; }
+.still a img, .still__v video{
+  display:block; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+}
 .still a:hover{ border-color:var(--muted); }
-.still img{ width:100%; height:auto; display:block; }
 .still figcaption{ margin-top:.55rem; }
 
 .spec{ font-family:var(--mono); font-size:.8rem; line-height:1.65; }
