@@ -89,7 +89,7 @@ window.SITE = {
       slug: 'weight',
       title: 'Weight',
       kicker: 'Trailer',
-      year: '2025',
+      year: 'Spring 2026',
       group: 'films',
       featured: true,
       blurb: 'Trailer for my upcoming short film, Weight.',
@@ -106,7 +106,7 @@ window.SITE = {
       notes: [],
       spec: [
         ['Goal', 'Make a trailer for my upcoming short film'],
-        ['Created', '2025']
+        ['Created', 'Spring 2026']
       ],
       credits: [],
       sources: [],
