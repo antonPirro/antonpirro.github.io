@@ -243,6 +243,31 @@ window.SITE = {
     },
 
     {
+      slug: 'yowza',
+      title: 'Yowza!',
+      kicker: 'Short film, dir. Ethan Hughes',
+      year: 'September 2026',
+      group: 'films',
+      featured: false,
+      blurb: '',
+      roles: ['Original score'],
+      video: { type: 'youtube', id: 'GkNhzHX333w' },
+      poster: '',
+      notes: [],
+      spec: [
+        ['Goal', 'Make original music for a short film'],
+        ['Released', 'September 2026'],
+        ['DAW', 'Ableton Live']
+      ],
+      credits: ['Produced by Yellow Paper Pictures', 'Directed by Ethan Hughes'],
+      sources: [],
+      links: [
+        { label: 'IMDb', href: 'https://www.imdb.com/title/tt46661014/' }
+      ],
+      rights: ''
+    },
+
+    {
       slug: 'willage-monster',
       title: 'Willage Monster',
       kicker: 'Found-footage parody',
