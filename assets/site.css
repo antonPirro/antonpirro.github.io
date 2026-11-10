@@ -369,6 +369,18 @@ body[data-route="work-index"]:not(.is-scrolled) .bar__name{ opacity:0; pointer-e
 }
 .still a:hover{ border-color:var(--muted); }
 .still figcaption{ margin-top:.55rem; }
+/* a vertical clip beside two stacked landscape stills: it takes the right
+   column across both rows, sized so its height matches the pair */
+.stills__grid.has-tall{ grid-template-columns:1fr .64fr; }
+.has-tall .still{ grid-column:1; }
+.has-tall .still--tall{ grid-column:2; grid-row:1 / span 2; display:flex; flex-direction:column; }
+.still--tall .still__v{ aspect-ratio:auto; flex:1; }
+@media (max-width:34rem){
+  .stills__grid.has-tall{ grid-template-columns:1fr; }
+  .has-tall .still, .has-tall .still--tall{ grid-column:auto; grid-row:auto; }
+  .still--tall .still__v{ aspect-ratio:9/16; width:62%; margin:0 auto; }
+}
+.notes__q{ font-size:1.12em; }
 
 .spec{ font-family:var(--mono); font-size:.8rem; line-height:1.65; }
 .spec__block + .spec__block{ margin-top:1.75rem; }

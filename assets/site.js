@@ -252,14 +252,16 @@
 
     var stills = (p.stills && p.stills.length)
       ? '<section class="stills"><h2 class="lbl stills__head">Process</h2>' +
-        '<div class="stills__grid' + (p.stills.length === 1 ? ' is-one' : '') + '">' +
+        '<div class="stills__grid' + (p.stills.length === 1 ? ' is-one' : '') +
+        (p.stills.some(function (s) { return s.tall; }) ? ' has-tall' : '') + '">' +
         p.stills.map(function (s) {
           var cap = s.caption
             ? '<figcaption class="lbl">' + esc(s.caption) + '</figcaption>' : '';
           if (s.type === 'video') {
             /* a silent loop reads as a moving photograph; anyone who has asked
                for less motion gets a still with controls instead */
-            return '<figure class="still"><div class="still__v"><video ' +
+            return '<figure class="still' + (s.tall ? ' still--tall' : '') +
+              '"><div class="still__v"><video ' +
               'src="' + esc(s.src) + '" ' +
               (s.poster ? 'poster="' + esc(s.poster) + '" ' : '') +
               'muted playsinline preload="metadata" ' +
@@ -282,6 +284,7 @@
     }
     var notes = (p.notes && p.notes.length)
       ? '<div class="notes">' + p.notes.map(function (t) {
+          if (t && t.q) return '<p class="notes__q"><em>' + inline(t.q) + '</em></p>';
           if (t && t.h) return '<h2 class="lbl notes__head">' + esc(t.h) + '</h2>';
           if (t && t.list) return '<ul>' + t.list.map(function (x) {
             return '<li>' + inline(x) + '</li>'; }).join('') + '</ul>';

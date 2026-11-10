@@ -401,9 +401,9 @@ window.SITE = {
       poster: 'assets/img/poster/chord-combat.jpg',
       videoNote: 'Music by Samuel Boland',
       notes: [
-        "This project was for my Integrating Music into Multimedia class in Fall 2025. My group and I created an arcade-inspired video game featuring two players and that live musical input. Our game, Chord Combat, was showcased at the [Goat Farm's Neo-Arcade](https://www.thegoatfarm.info/events/neo-arcade-1) on November 20, 2025.",
+        "This project was for my Integrating Music into Multimedia class in Fall 2025. My group and I created an arcade-inspired video game featuring two players and live musical input. Our game, Chord Combat, was showcased at the [Goat Farm's Neo-Arcade](https://www.thegoatfarm.info/events/neo-arcade-1) on November 20, 2025.",
         { h: 'How it works' },
-        "The environment is a grid. The first player controls a goat character on the very bottom row that can move right and left by one block at a time. The second player controls a midi piano that spawns falling note blocks on the columns corresponding to the notes played. The goat player has three lives and a rechargeable shot that can extinguish a note block. The longer they survive, the faster the notes fall.",
+        "The environment is a grid. The first player controls a goat character on the very bottom row that can move right and left by one block at a time. The second player controls a MIDI piano that spawns falling note blocks on the columns corresponding to the notes played. The goat player has three lives and a rechargeable shot that can extinguish a note block. The longer they survive, the faster the notes fall.",
         { h: 'Contribution' },
         "This was a group project. For Chord Combat, I worked alongside my talented peers:",
         { list: ['Samuel Boland', 'Zephyr Smith', 'Levi Waterhouse'] },
@@ -411,8 +411,10 @@ window.SITE = {
       ],
       stills: [
         { src: 'assets/img/process/chord-combat-neo-arcade.jpg', caption: '' },
-        { src: 'assets/img/process/chord-combat-level-3.jpg', position: 'center 45%', caption: '' },
-        { src: 'assets/img/process/chord-combat-title.jpg', position: 'center 35%', caption: '' }
+        { src: 'assets/img/process/chord-combat-title.jpg', position: 'center 35%', caption: '' },
+        { type: 'video', tall: true,
+          src: 'assets/video/process/chord-combat-play.mp4',
+          poster: 'assets/img/process/chord-combat-play-poster.jpg', caption: '' }
       ],
       spec: [
         ['Goal', 'Make an arcade game played with live musical input'],
@@ -442,10 +444,10 @@ window.SITE = {
       videoNote: 'Latest iteration of the Open Stage Control interface',
       notes: [
         "For my ongoing capstone project, our group has been working to answer this question:",
-        "How can a DAW plugin interface be designed to allow users to efficiently control the parameters of an entire audio signal chain within a single visual workspace?",
+        { q: "How can a DAW plugin interface be designed to allow users to efficiently control the parameters of an entire audio signal chain within a single visual workspace?" },
         "We noticed that on nearly every DAW, changing the parameters of certain plugins requires some sort of menu diving. We aim to develop a touchscreen interface that preserves the intuitive workflow and muscle memory of analog mixing consoles while minimizing visual clutter and complexity.",
         { h: 'How it works' },
-        "We're working within Reaper and utilizing Open Stage Control for our interface. OSC messages between the two softwares transfer information about insert parameters and track attributes such as volume, pan, solo, mute, etc. To narrow the scope of this project, the stage control interface accounts for one Cockos compressor and one Cockos equalizer on each track. These effects along with control over track attributes allow for a \u201c75% done mix\u201d\u2014at least, in my opinion."
+        "We're working in REAPER and utilizing Open Stage Control for our interface. OSC messages between the two programs carry information about insert parameters and track attributes such as volume, pan, solo, mute, etc. To narrow the scope of this project, the Open Stage Control interface accounts for one Cockos compressor and one Cockos equalizer on each track. These effects along with control over track attributes allow for a \u201c75% done mix\u201d\u2014at least, in my opinion."
       ],
       spec: [
         ['Goal', 'Control a whole signal chain from one touchscreen workspace'],
