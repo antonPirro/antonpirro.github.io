@@ -100,6 +100,12 @@
     var v = p.video;
 
     if (!v || (v.type === 'youtube' && !v.id) || (v.type === 'file' && !v.src)) {
+      /* no video, but a picture to show (an interface, an installation) */
+      if (p.poster) {
+        return '<div class="frame frame--image"><a href="' + esc(p.poster) + '" target="_blank" ' +
+               'rel="noopener"><img src="' + esc(p.poster) + '" alt="' +
+               esc(p.videoNote || p.title) + '"></a></div>';
+      }
       return '<div class="frame frame--empty">' + placeholder(p.slug) +
              '<p class="frame__note lbl">No video linked yet — add one to ' +
              'data/projects.js</p></div>';
@@ -268,9 +274,18 @@
         }).join('') + '</div></section>'
       : '';
 
+    /* A note is a paragraph. It can also be { h: 'Heading' } or
+       { list: ['a', 'b'] }, and text can carry links as [words](https://...). */
+    function inline(t) {
+      return esc(t).replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    }
     var notes = (p.notes && p.notes.length)
       ? '<div class="notes">' + p.notes.map(function (t) {
-          return '<p>' + esc(t) + '</p>';
+          if (t && t.h) return '<h2 class="lbl notes__head">' + esc(t.h) + '</h2>';
+          if (t && t.list) return '<ul>' + t.list.map(function (x) {
+            return '<li>' + inline(x) + '</li>'; }).join('') + '</ul>';
+          return '<p>' + inline(t) + '</p>';
         }).join('') + '</div>'
       : '';
 
@@ -289,6 +304,7 @@
         (p.blurb ? '<p class="proj__blurb">' + esc(p.blurb) + '</p>' : '') +
       '</header>' +
       frame(p) +
+      (p.videoNote ? '<p class="lbl frame__cap">' + esc(p.videoNote) + '</p>' : '') +
       '<div class="proj__body">' +
         '<div>' + notes + stills + '</div>' +
         '<aside class="spec">' + right + '</aside>' +

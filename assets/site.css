@@ -224,6 +224,9 @@ body[data-route="work-index"]:not(.is-scrolled) .bar__name{ opacity:0; pointer-e
 }
 /* never crop the actual film — letterbox it instead */
 .frame video{ object-fit:contain; background:#000; }
+/* a screenshot in the main frame: show all of it, click for full size */
+.frame--image a{ position:absolute; inset:0; display:block; }
+.frame--image img{ object-fit:contain; }
 .frame--empty{
   display:grid; place-items:center;
 }
@@ -337,6 +340,13 @@ body[data-route="work-index"]:not(.is-scrolled) .bar__name{ opacity:0; pointer-e
   .proj__body{ grid-template-columns:minmax(0,1.55fr) minmax(15rem,.85fr); gap:clamp(2.5rem,5vw,4.5rem); }
 }
 .notes p{ margin:0 0 1.15rem; max-width:60ch; }
+.notes a{ text-decoration-color:var(--accent); text-underline-offset:.18em; }
+.notes a:hover{ color:var(--accent); }
+.notes__head{ margin:2rem 0 .7rem; color:var(--ink); }
+.notes__head:first-child{ margin-top:0; }
+.notes ul{ margin:0 0 1.15rem; padding-left:1.1rem; max-width:60ch; }
+.notes li{ margin:.2rem 0; }
+.frame__cap{ margin-top:.6rem; }
 .notes p:first-child::first-letter{ /* nothing fancy, just here for reference */ }
 
 /* ---- process stills ---------------------------------------------------- */
